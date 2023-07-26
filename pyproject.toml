@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling", "rich", "pyperclip", "requests"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ignorepy_sprousecal"
+version = "0.0.1"
+authors = [
+  { name="Calvin Sprouse", email="sprousecal@gmail.com" },
+]
+description = "A package to generate .gitignore files using the CLI."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/CalvinSprouse/ignorepy"
+"Bug Tracker" = "https://github.com/CalvinSprouse/ignorepy/issues"

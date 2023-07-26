@@ -1,3 +1,7 @@
+### ignorepy
+.defaults
+*.test_venv
+
 ### macOS ###
 # General
 .DS_Store
