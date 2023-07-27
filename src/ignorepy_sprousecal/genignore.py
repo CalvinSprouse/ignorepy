@@ -64,6 +64,8 @@ if __name__ == "__main__":
     # user can pass an unlimited number of tags to the program
     # add an optional tag, -s which saves the arguments as the default
     # then if no arguments are called the defauls are used
+    # add an optional argumen, -f, which takes a filename and saves
+    # instead of copying to the clip board
     parser = argparse.ArgumentParser(
         description="Generate a gitignore from gitignore.io."
     )
@@ -72,6 +74,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "-s", "--save", action="store_true",
         help="save the tags as the defaults for future use.",
+    )
+
+    parser.add_argument(
+        "-f", "--file", action="store_true",
+        help="save the gitignore to a file instead of copying to clipboard.",
     )
 
     # add the tags to the parser
@@ -123,9 +130,19 @@ if __name__ == "__main__":
         print(ignore_response[0].strip())
         sys.exit(1)
 
-    # copy the text to the clipboard
-    pyperclip.copy(ignore_response[0])
+    # check if -f was passed
+    if args.file:
+        # open the file and write the text to it
+        with open(args.tags[0] + ".gitignore", "w", encoding="utf-8") as f:
+            f.write(ignore_response[0])
 
-    # print that the program is done
-    line_count = len(ignore_response[0].split('\n'))
-    print(f"Copied {line_count} lines to the clipboard.")
+        # print that the file was saved
+        print(f"Saved .gitignore to the current directory.")
+        sys.exit(0)
+    else:
+        # copy the text to the clipboard
+        pyperclip.copy(ignore_response[0])
+
+        # print that the program is done
+        line_count = len(ignore_response[0].split('\n'))
+        print(f"Copied {line_count} lines to the clipboard.")

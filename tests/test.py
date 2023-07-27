@@ -1,3 +1,3 @@
-from ignorepy import genignore
+from ignorepy_sprousecal import genignore
 
-genignore(["python"])
+genignore.generate_gitignore(["python"])
