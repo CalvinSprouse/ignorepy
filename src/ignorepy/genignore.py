@@ -144,7 +144,7 @@ def main():
             f.write(ignore_response[0])
 
         # print that the file was saved
-        print("Saved .gitignore to the current directory.")
+        print("Saved to '.gitignore'.")
         sys.exit(0)
     else:
         # copy the text to the clipboard

@@ -1,6 +1,5 @@
-### ignorepy
-.defaults
-*.tvenv
+# Created by https://www.toptal.com/developers/gitignore/api/python,macos,windows,venv,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,macos,windows,venv,visualstudiocode
 
 ### macOS ###
 # General
@@ -9,8 +8,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 
 # Thumbnails
 ._*
@@ -264,4 +262,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/python,macos,visualstudiocode,windows,venv
+# End of https://www.toptal.com/developers/gitignore/api/python,macos,windows,venv,visualstudiocode
