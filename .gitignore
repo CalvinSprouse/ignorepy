@@ -1,6 +1,6 @@
 ### ignorepy
 .defaults
-*.test_venv
+*.tvenv
 
 ### macOS ###
 # General

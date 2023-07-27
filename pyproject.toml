@@ -1,15 +1,29 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ignorepy_sprousecal"
-version = "0.0.7"
+name = "ignorepy"
+version = "0.1.0"
+authors = [{name="Calvin Sprouse", email="sprousecal@gmail.com"}]
+description = "Create .gitignore files from CLI."
+keywords = ["gitignore", ".gitignore", "cli", "git", "github"]
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
-    "requests",
-    "rich",
-    "pyperclip"
+  "requests",
+  "rich",
+  "pyperclip",
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/CalvinSprouse/ignorepy"
+"Bug Tracker" = "https://github.com/CalvinSprouse/ignorepy/issues"
+
 [project.scripts]
-ignorepy = "ignorepy_sprousecal.genignore"
+ignorepy = "ignorepy.genignore:main"

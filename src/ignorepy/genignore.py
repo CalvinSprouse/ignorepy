@@ -7,6 +7,7 @@ to generate a gitignore and copies to the clipboard.
 
 # imports
 import argparse
+import os
 import sys
 import requests
 
@@ -58,8 +59,11 @@ def generate_gitignore(ignore_tags: list[str]) -> str:
     return raw_text, response_code
 
 
-# run the main script
-if __name__ == "__main__":
+# define the main script
+def main():
+    """Main script for the program.
+    """
+
     # get tags from the user using argparse
     # user can pass an unlimited number of tags to the program
     # add an optional tag, -s which saves the arguments as the default
@@ -90,9 +94,12 @@ if __name__ == "__main__":
     # parse the arguments
     args = parser.parse_args()
 
-
     # define the location of the defaults file
-    defaults_file = ".defaults"
+    # get the location of the current script
+    # then add the defaults file to the end
+    defaults_file = os.path.join(
+        os.path.dirname(__file__),
+        "ignorepy.defaults")
 
     # check if -s was passed, if so save the tags to the defaults file
     # otherwise check if any tags were passed, if not load from defaults if it exists
@@ -103,23 +110,23 @@ if __name__ == "__main__":
             sys.exit(1)
 
         # open the defaults file and write the tags to it
-        with open(defaults_file, "w", encoding="utf-8") as f:
-            f.write("\n".join(args.tags))
-
-        # print that the defaults were saved
-        print(f"Saved {args.tags} tags as the defaults.")
+        try:
+            with open(defaults_file, "w", encoding="utf-8") as f:
+                f.write("\n".join(args.tags))
+            print(f"Saved {args.tags} tags as the defaults.")
+        except (FileNotFoundError, OSError):
+            print(f"Error: could not save defaults to '{defaults_file}'.")
+            sys.exit(1)
     elif len(args.tags) == 0:
         # open the defaults file and load the tags from it
         try:
             with open(defaults_file, "r", encoding="utf-8") as f:
                 args.tags = f.read().split("\n")
-
             print(f"Loaded {args.tags} from defaults.")
-        except FileNotFoundError:
+        except (FileNotFoundError, OSError):
             print("Error: no tags passed and no defaults file found.")
             print("Use -s to save a list of tags as defaults.")
             sys.exit(1)
-
 
     # generate the ignore text from the function
     ignore_response = generate_gitignore(ignore_tags=args.tags)
@@ -133,11 +140,11 @@ if __name__ == "__main__":
     # check if -f was passed
     if args.file:
         # open the file and write the text to it
-        with open(args.tags[0] + ".gitignore", "w", encoding="utf-8") as f:
+        with open(".gitignore", "w", encoding="utf-8") as f:
             f.write(ignore_response[0])
 
         # print that the file was saved
-        print(f"Saved .gitignore to the current directory.")
+        print("Saved .gitignore to the current directory.")
         sys.exit(0)
     else:
         # copy the text to the clipboard
@@ -146,3 +153,8 @@ if __name__ == "__main__":
         # print that the program is done
         line_count = len(ignore_response[0].split('\n'))
         print(f"Copied {line_count} lines to the clipboard.")
+
+
+# run the main script
+if __name__ == "__main__":
+    main()
