@@ -4,7 +4,7 @@
 The CLI access point for ignorepy.
 """
 
-# import he main module
+# import the main module
 from ignorepy.genignore import main
 
 # call main
