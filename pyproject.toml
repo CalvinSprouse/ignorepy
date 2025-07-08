@@ -1,13 +1,14 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "ignorepy"
-version = "0.1.0"
-authors = [{name="Calvin Sprouse", email="sprousecal@gmail.com"}]
-description = "Create .gitignore files from CLI."
-keywords = ["gitignore", ".gitignore", "cli", "git", "github"]
+version = "0.1"
+authors = [
+    {name="Calvin Sprouse", email="calvinsprouse@proton.me"}
+]
+description = "Generate a .gitignore file from command line tags using gitignore.io "
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -17,13 +18,9 @@ classifiers = [
 ]
 dependencies = [
   "requests",
-  "rich",
   "pyperclip",
 ]
 
 [project.urls]
 "Homepage" = "https://github.com/CalvinSprouse/ignorepy"
-"Bug Tracker" = "https://github.com/CalvinSprouse/ignorepy/issues"
-
-[project.scripts]
-ignorepy = "ignorepy.genignore:main"
+"Issues" = "https://github.com/CalvinSprouse/ignorepy/issues"
